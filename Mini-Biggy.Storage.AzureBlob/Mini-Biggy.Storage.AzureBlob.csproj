@@ -1,8 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Mini_Biggy.Storage.AzureBlob</RootNamespace>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>MiniBiggy.Storage.AzureBlob</RootNamespace>
+    <PackageId>mini-biggy-azureblob</PackageId>
+    <Authors>Andre Carlucci</Authors>
+    <Description>Mini-Biggy is a Very Fast Document/Relational Query Tool with Full LINQ Compliance. This package adds storage for Azure Blobs.</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/mini-biggy/mini-biggy/master/Assets/mini_biggy.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>azure blob biggy documentstore json linq nosql sql database filesystem vnext netstandard</PackageTags>
+    <PackageProjectUrl>https://github.com/andrecarlucci/mini-biggy-azureblob</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/andrecarlucci/mini-biggy-azureblob.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/andrecarlucci/mini-biggy-azureblob/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="mini-biggy" Version="2.1.18" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.2" />
+  </ItemGroup>
 
 </Project>
