@@ -9,29 +9,27 @@ namespace Mini_Biggy.Storage.AzureBlob.Cmd {
         static async Task Main(string[] args) {
             var conn = args.Length > 0 ? args[0] : "";
 
-            if (conn == "a") {
+            if (conn == "") {
                 Console.WriteLine("Please, specify the connection string as the first argument");
                 return;
             }
 
             Console.WriteLine("Hello MiniBiggy on SqlServer!");
             var list = Create.ListOf<Tweet>()
-                          .SavingOnAzureBlog()
+                          .SavingOnAzureBlob()
                           .KeepingLatest(100)
                           .WithConnectionString(conn)
-                          .SavingOnContainer("tweets")
+                          .SavingOnContainerAndFile("container", "tweets.json")
                           .UsingPrettyJsonSerializer()
                           .BackgroundSavingEveryTwoSeconds();
-            var list = new PersistentList<Tweet>(new AzureBlobStorage(connectionString, "container", "Tweets.json", 5), 
-                                                 new PrettyJsonSerializer(),
-                                                 new SaveOnlyWhenRequested());
 
-            list.Saved += (sender, eventArgs) => {
-                Console.WriteLine("saved");
+            list.Saved += (sender, e) => {
+                Console.WriteLine($"Saved: {e.Success} Elapsed: {e.TimeToSave}");
             };
 
 
-            Console.WriteLine("Hello, hit enter to create and save a tweet");
+            Console.WriteLine("List size: " + list.Count);
+            Console.WriteLine("Hit enter to create and save a tweet");
             while (true) {
                 var line = Console.ReadLine();
                 if (line == "exit") {
@@ -42,7 +40,6 @@ namespace Mini_Biggy.Storage.AzureBlob.Cmd {
                     Message = line,
                     Id = DateTime.Now.Second
                 });
-                await list.SaveAsync();
             }
             Console.WriteLine("End");
         }
