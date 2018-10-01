@@ -12,6 +12,7 @@
     <PackageProjectUrl>https://github.com/andrecarlucci/mini-biggy-azureblob</PackageProjectUrl>
     <RepositoryUrl>https://github.com/andrecarlucci/mini-biggy-azureblob.git</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/andrecarlucci/mini-biggy-azureblob/blob/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
